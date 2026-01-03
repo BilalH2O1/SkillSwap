@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+.listings-grid {
+  list-style-type: none;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  gap: 20px;
+}
+
+.listing-card {
+  background-color: #1e1e1e; /* Dark card background */
+  border: 1px solid #333;
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  color: white;
+
+  display: flex;        /* Turn on Flexbox */
+  flex-direction: column; /* Stack items vertically (Top to Bottom) */
+  /*height: 100%;
+
+  /* This adds a shadow to make it "pop" off the screen */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  /* Smooth transition for hover effects */
+  transition: transform 0.2s ease;
+
+  /* Flexbox makes it easy to stack the title, price, and button vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Hover Effect: When mouse goes over the card */
+.listing-card:hover {
+  transform: translateY(-5px); /* Moves up slightly */
+  border-color: #007bff; /* Blue border highlight */
+}
+
+/* The "Sold" variant we added in the JSX */
+.listing-card.sold {
+  opacity: 0.6;
+  border-color: red;
+  pointer-events: none; /* Prevents clicking anything on a sold card */
+}
+
+.card-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.buy-btn{
+  background-color : #007bff;
+  color: white;
+  border: none;
+  padding : 10px 20px;
+  cursor : pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  transition: background-color 0.2s ease;
+  margin-top: 15px;
+}
+
+.buy-btn:hover {
+  background-color: #0056b3;
+}
+
+/* The Form Container */
+.post-form {
+  background-color: #2d2d2d; /* Dark gray to match theme */
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border: 1px solid #444;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.9);
+  color: white;
+}
+
+/* Style the Inputs and Select dropdown */
+.post-form input,
+.post-form select {
+  background-color: #000000;
+  border: 3px solid #555;
+  color: white;
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px; /* Adds space if they wrap on small screens */
+  border-radius: 40px;
+}
+
+/* Change border color when you click inside an input */
+.post-form input:focus,
+.post-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* The container that holds the label and the buttons */
+.filter-container {
+  display: flex;
+  align-items: center; /* Vertically aligns the text with the buttons */
+  margin-bottom: 20px;
+  gap: 15px; /* Adds space between the "Filter by" text and the buttons */
+}
+
+.filter-label {
+  font-weight: bold;
+  color: #888; /* Subtle gray text so it doesn't distract */
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px; /* Space between each pill button */
+  flex-wrap: wrap; /* Allows buttons to drop to the next line on small screens */
+}
+
+/* The actual "Pill" Button */
+.filter-pill {
+  background-color: transparent;
+  border: 1px solid #555;
+  color: white;
+  padding: 8px 20px;
+
+  /* MAGIC NUMBER: High radius makes it a pill shape */
+  border-radius: 50px;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover Effect */
+.filter-pill:hover {
+  background-color: white;
+  color: black;
+  border-color: white;
+}
+
+.sold-out{
+  color: red;
+}
+.filter-pill.active {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  font-style: italic;
+  border: 2px dashed #444; /* Dashed lines usually mean "empty slot" */
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.all-page{
+  max-width: 1000px; /* Don't let the website get wider than this */
+  margin: 0 auto;    /* The Magic Spell: 0 top/bottom, AUTO left/right */
+  padding: 40px;     /* Adds a little breathing room on the sides */
+  font-family: sans-serif;
+}
+
+h1,h2,h3{
+  text-align: center;
+}
+
+/* 1. Force the browser window to align everything center */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Horizontally center the #root div */
+  min-height: 100vh; /* Make sure body is at least as tall as the screen */
+  background: radial-gradient(circle at center, #1a2a40 0%, #0b101a 100%);
+}
+
+/* 2. Make sure the React "Root" container takes the full centered space */
+#root {
+  width: 100%; /* Take up all available width */
+  max-width: 1280px; /* But stop growing at this size */
+  text-align: center; /* Force text inside to center by default */
+  padding: 2rem; /* Give it some breathing room */
+}
+
+h1 {
+  /* 1. The New Font */
+  font-family: 'Russo One', sans-serif;
+
+  /* 2. Size & Shape */
+  font-size: 5rem;    /* Massive size */
+  text-transform: uppercase; /* Force "SkillSwap" to "SKILLSWAP" */
+  letter-spacing: -2px; /* Squeeze letters slightly closer together */
+  margin-bottom: 10px;
+
+  /* 3. The Gradient Color (Keep this!) */
+  background: linear-gradient(to right, #ffffff, #a5a5a5); /* Metallic White/Grey look */
+  /* OR use your Purple/Pink one if you prefer: */
+  /* background: linear-gradient(to right, #646cff, #ff64d8); */
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* 4. Interaction */
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+h1:hover {
+  transform: scale(1.02); /* Subtle grow */
+  /* Optional: Add a white glow behind it */
+  text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+.delete-btn{
+  background-color: #1e1e1e; /* Or whatever dark gray you used */
+    color: #a0a0a0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    /* --- NEW STYLES FOR SIZE AND POSITION --- */
+    /* 1. Make it small */
+    width: auto;        /* Only as wide as the text "Delete" */
+    padding: 5px 10px;  /* Much smaller padding than the big blue button */
+
+    /* 2. Move to the very left */
+    align-self: flex-end; /* In a flex column, this moves item to the left edge */
+
+    /* --- KEEP THESE CRITICAL FUNCTIONAL STYLES --- */
+    margin-top: 15px;     /* Give it some space from the Buy button */
+    pointer-events: auto; /* Ensures it clicks even if "sold out" */
+    z-index: 100;
+}
+
+.balance{
+
+}
