@@ -78,7 +78,7 @@ function App() {
   const handleDelete = async(id) => {
       const isConfirmed = window.confirm("Are you sure you want to delete this listing?")
       if (!isConfirmed){
-          return none;
+          return;
           }
       await fetch(`http://localhost:8080/listing/delete/${id}`, {method : 'DELETE'});
       setListings(listings.filter(item => item.id != id));
