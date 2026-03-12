@@ -78,7 +78,7 @@ function App() {
   const handleDelete = async(id) => {
       const isConfirmed = window.confirm("Are you sure you want to delete this listing?")
       if (!isConfirmed){
-          return;
+          return none;
           }
       await fetch(`http://localhost:8080/listing/delete/${id}`, {method : 'DELETE'});
       setListings(listings.filter(item => item.id != id));
@@ -86,16 +86,41 @@ function App() {
       }
 
   // 4. Buy Function
-  const handleBuy = (id) => {
-    fetch(`http://localhost:8080/listing/buy/${id}`, { method: 'POST' })
-      .then(res => res.json())
-      .then(updatedListing => {
-         setListings(listings.map(item =>
-           item.id === id ? updatedListing : item
-         ));
-      })
-  }
+// INSIDE App.js
 
+const handleBuy = async (listing) => {
+    const buyerName = window.prompt("Enter your name to confirm purchase:");
+    if (!buyerName) return;
+
+    const transaction = {
+        listingId: listing.id,
+        buyerName: buyerName,
+        price: listing.price
+    };
+
+    try {
+        // --- FIX: Change '/pay' to '/buy' ---
+        const response = await fetch('http://localhost:8080/transactions/buy', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(transaction)
+        });
+
+        if (response.ok) {
+            alert(`Success! You bought ${listing.title}`);
+            // Update the UI to show "SOLD OUT"
+            setListings(listings.map(item =>
+                item.id === listing.id ? { ...item, isSold: true } : item
+            ));
+        } else {
+            alert("Purchase failed.");
+        }
+    } catch (error) {
+        console.error("Error buying item:", error);
+    }
+}
   return (
     <div className = "all-page" >
       <strong><h2 className="balance"> ok </h2></strong>
@@ -115,6 +140,14 @@ function App() {
           <strong>⚠️ Error:</strong> {error}
         </div>
       )}
+  import Aurora from './Aurora';
+
+  <Aurora
+    colorStops={["#7cff67","#B19EEF","#5227FF"]}
+    blend={0.5}
+    amplitude={1.0}
+    speed={1}
+  />
 
       {/* THE FORM */}
       <div className="post-form">
